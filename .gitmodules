@@ -1,3 +1,6 @@
 [submodule "_ace-editor-builds"]
 	path = ace-editor-patch/ace-editor-builds/
 	url = https://github.com/ajaxorg/ace-builds.git
+[submodule "ace-editor-patch/ace-editor-buil"]
+	path = ace-editor-patch/ace-editor-builds
+	url = https://github.com/ajaxorg/ace-builds.git
