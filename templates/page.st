@@ -22,7 +22,8 @@
     <script type="text/javascript" src="$base$/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="$base$/js/navbar.js"></script>
     <script type="text/javascript" src="$base$/js/sidebar.js"></script>
-    <script type="text/javascript" src="$base$/js/content.js"></script>
+    <!-- PATCHED to use ace editor instead fo builtin content.js -->
+    <!-- <script type="text/javascript" src="$base$/js/content.js"></script> -->
     <script type="text/javascript" src="$base$/js/toc.js"></script>
     <script type="text/javascript" src="$base$/js/custom.js"></script>
     $endif$
@@ -75,6 +76,43 @@ $footer()$
         </div>
       </div>
     </div>
+
+    <!-- BEGIN of patched html with ace editor -->
+    <style type="text/css" media="screen">
+      #editor {
+        height: 350px;
+        width: 100%;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        font-family: Monaco, "Liberation Mono", Courier, monospace;
+      }
+      #editedText {
+        visibility: hidden;
+        display: none;
+      }
+    </style>
+    <script src="$base$/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+      var ta = document.getElementById("editedText");
+      var editorDiv = document.createElement("div");
+      editorDiv.setAttribute("id", "editor");
+      ta.parentNode.insertBefore(editorDiv, ta.nextSibling);
+      var editor = ace.edit(editorDiv);
+      editor.getSession().setValue(ta.value);
+      editor.getSession().on('change', function () {
+        ta.value = editor.getSession().getValue();
+      });
+      editor.setTheme("ace/theme/github");
+      editor.getSession().setMode("ace/mode/markdown");
+      editor.setHighlightActiveLine(false);
+      editor.setShowPrintMargin(false);
+      editor.getSession().setUseWrapMode(true);
+      editor.setKeyboardHandler("ace/keyboard/vim");
+      editor.focus();
+    </script>
+    <!-- BEGIN of patched html with ace editor -->
+    
 $javascripts$
 $expire()$
 $getuser()$
