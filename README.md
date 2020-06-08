@@ -21,3 +21,8 @@ docker run --name gitit --rm -p 5001:5001 \
   -e GITIT_GID=1001 \
   t13a/gitit-experimental
 ```
+
+Remember to clone submodule with
+```sh
+git submodule update --remote --recursive
+```
